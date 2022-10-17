@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Kaareel/Prueba-React-2/static/css/main.1213b01f.css",
+    "main.js": "/Kaareel/Prueba-React-2/static/js/main.726a45a2.js",
+    "static/js/787.5b5dfee8.chunk.js": "/Kaareel/Prueba-React-2/static/js/787.5b5dfee8.chunk.js",
+    "index.html": "/Kaareel/Prueba-React-2/index.html",
+    "main.1213b01f.css.map": "/Kaareel/Prueba-React-2/static/css/main.1213b01f.css.map",
+    "main.726a45a2.js.map": "/Kaareel/Prueba-React-2/static/js/main.726a45a2.js.map",
+    "787.5b5dfee8.chunk.js.map": "/Kaareel/Prueba-React-2/static/js/787.5b5dfee8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1213b01f.css",
+    "static/js/main.726a45a2.js"
+  ]
+}
