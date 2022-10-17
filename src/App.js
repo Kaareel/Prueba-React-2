@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./componentes/Navbar";
+import Home from "./pages/Home";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {useState, useEffect} from "react";
+import Context from "./componentes/Context";
+import Carrito from "./pages/Carrito";
+import Descripcion from "./pages/Descripcion";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const catalogo = "/pizzas.json"
+    const [pizzas, setPizzas] = useState([])
+    const [carrito, setCarrito] = useState([])
+    const [count, setCount] = useState([1])
+
+    useEffect(() => {
+        async function traerPizzas() {
+            try {
+                const response = await fetch(catalogo)
+                const data = await response.json()
+                setPizzas(data)
+            } catch (error) {
+                alert(error)
+            }
+        }
+
+        traerPizzas()
+    }, [])
+
+    useEffect(() => {
+        let total = 0
+
+        for(let pizza of carrito){
+            total = total + (pizza.price * pizza.cantidad)
+        }
+
+        setCount(total)
+    }, [carrito])
+
+    return (
+        <div className="App">
+            <Context.Provider value={{pizzas, setPizzas, carrito, setCarrito, count, setCount}}>
+                <BrowserRouter>
+                    <Navbar/>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/descripcion/:id" element={<Descripcion/>}/>
+                        <Route path="/carrito" element={<Carrito/>}/>
+                    </Routes>
+                </BrowserRouter>
+            </Context.Provider>
+
+        </div>
+    );
 }
 
 export default App;
